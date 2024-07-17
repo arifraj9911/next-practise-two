@@ -5,7 +5,7 @@ import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 
 export const authOptions = {
-  secret: `CSFeyk4+waDm/r/tvSYaNDuZvz+ccU0GFd+aOqSKkic=`,
+  secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
   session: {
     strategy: "jwt",
   },
@@ -44,12 +44,12 @@ export const authOptions = {
       },
     }),
     GoogleProvider({
-      clientId: "754663363845-1mr06t3fpou780ftnotvaod1nmtr93q5.apps.googleusercontent.com",
-      clientSecret: "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"
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
     }),
     GitHubProvider({
-      clientId: "Ov23likAiRKu4J6VH3br",
-      clientSecret: "c844b5fbbcc47fee21067c9ec58373ce582cda67"
+      clientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_GITHUB_CLIENT_SECRET,
     })
   ],
   callbacks: {
@@ -68,23 +68,6 @@ export const authOptions = {
 
 const handler = NextAuth(authOptions);
 
-const users = [
-  {
-    id: 1,
-    name: "Arif",
-    email: "karif9514@gmail.com",
-    password: "password",
-    type: "admin",
-    image: "https://i.ibb.co/3pbYLVz/p-H-Upload-11zon.jpg",
-  },
-  {
-    id: 2,
-    name: "Raj",
-    email: "arif.raj9911@gmail.com",
-    password: "password",
-    type: "moderator",
-    image: "https://i.ibb.co/3pbYLVz/p-H-Upload-11zon.jpg",
-  },
-];
+
 
 export { handler as GET, handler as POST };
